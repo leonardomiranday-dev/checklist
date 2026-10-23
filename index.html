@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checklist CCTV | solsystem</title>
+  <meta name="description" content="Checklist profesional de mantenimiento y control CCTV — solsystem" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="checklist-cctv.css" />
+</head>
+<body>
+  <div class="page-actions no-print">
+    <div class="page-actions-right">
+      <button type="button" class="btn btn-ghost" id="btnEmail" title="soportesolsystem@gmail.com">Enviar a correo electrónico</button>
+      <button type="button" class="btn btn-primary" id="btnSave">Guardar borrador</button>
+    </div>
+  </div>
+
+  <form id="checklistForm" class="sheet" autocomplete="off">
+    <header class="sheet-header">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">S</div>
+        <div>
+          <div class="brand-name">solsystem</div>
+          <div class="brand-tag">Soluciones Integrales</div>
+        </div>
+      </div>
+      <div class="brand-contact">
+        <strong>Ingeniería de Proyectos</strong>
+        <span>El Alcázar Poniente 409 — Maipú — Santiago</span>
+        <span>+56 2 3224 8510 · contacto@solsystem.cl</span>
+        <span>solsystem.cl</span>
+      </div>
+    </header>
+
+    <div class="sheet-title">
+      CHECKLIST COMPLETO PROFESIONAL DE MANTENIMIENTO Y CONTROL — CCTV
+    </div>
+
+    <section class="info-block">
+      <div class="info-grid">
+        <label class="field field-wide">
+          <span>Cliente</span>
+          <input type="text" name="cliente" required />
+        </label>
+        <label class="field">
+          <span>Fecha</span>
+          <input type="date" name="fecha" required />
+        </label>
+        <label class="field">
+          <span>Hora</span>
+          <input type="time" name="hora" required />
+        </label>
+
+        <label class="field field-wide">
+          <span>Dirección</span>
+          <input type="text" name="direccion" required />
+        </label>
+        <label class="field field-wide">
+          <span>Técnico</span>
+          <input type="text" name="tecnico" required />
+        </label>
+
+        <label class="field">
+          <span>NVR / XVR / DVR</span>
+          <input type="text" name="nvr" placeholder="Marca" />
+        </label>
+        <label class="field">
+          <span>Modelo</span>
+          <input type="text" name="modelo" />
+        </label>
+        <label class="field">
+          <span>Discos</span>
+          <input type="text" name="discos" placeholder="Cant. / capacidad" />
+        </label>
+
+        <fieldset class="choice-group">
+          <legend>Canales</legend>
+          <label><input type="radio" name="canales" value="8" /> 8</label>
+          <label><input type="radio" name="canales" value="16" /> 16</label>
+          <label><input type="radio" name="canales" value="32" /> 32</label>
+        </fieldset>
+
+        <fieldset class="choice-group">
+          <legend>Sistema</legend>
+          <label><input type="radio" name="sistema" value="IP" /> IP</label>
+          <label><input type="radio" name="sistema" value="HD" /> HD</label>
+          <label><input type="radio" name="sistema" value="Mixto" /> Mixto</label>
+        </fieldset>
+
+        <fieldset class="choice-group choice-group-full">
+          <legend>Tipo de servicio</legend>
+          <label><input type="checkbox" name="tipo_servicio" value="SERVICIO" /> Servicio</label>
+          <label><input type="checkbox" name="tipo_servicio" value="CAPACITACION" /> Capacitación</label>
+          <label><input type="checkbox" name="tipo_servicio" value="REPARACION" /> Reparación</label>
+          <label><input type="checkbox" name="tipo_servicio" value="MANTENCION" /> Mantención</label>
+        </fieldset>
+      </div>
+    </section>
+
+    <div class="checklist-columns" id="checklistSections"></div>
+
+    <section class="final-block">
+      <fieldset class="choice-group choice-group-full estado-final">
+        <legend>Estado final</legend>
+        <label><input type="radio" name="estado_final" value="operativo" required /> Operativo en sitio</label>
+        <label><input type="radio" name="estado_final" value="obs_menores" /> Con obs. menores</label>
+        <label><input type="radio" name="estado_final" value="parcial" /> Parcial</label>
+        <label><input type="radio" name="estado_final" value="fuera" /> Fuera de servicio</label>
+      </fieldset>
+
+      <label class="field field-block">
+        <span>Observación en la mantención</span>
+        <textarea name="observacion_general" rows="4" placeholder="Detalle hallazgos, trabajos realizados y recomendaciones..."></textarea>
+      </label>
+
+      <div class="signatures">
+        <div class="sig-box">
+          <div class="sig-label">Firma técnico</div>
+          <canvas class="sig-pad" id="sigTecnico" width="400" height="140"></canvas>
+          <div class="sig-actions no-print">
+            <button type="button" class="btn btn-sm" data-clear="sigTecnico">Limpiar</button>
+          </div>
+          <input type="text" name="nombre_firma_tecnico" class="sig-name" placeholder="Nombre del técnico" />
+        </div>
+        <div class="sig-box">
+          <div class="sig-label">Firma cliente</div>
+          <canvas class="sig-pad" id="sigCliente" width="400" height="140"></canvas>
+          <div class="sig-actions no-print">
+            <button type="button" class="btn btn-sm" data-clear="sigCliente">Limpiar</button>
+          </div>
+          <input type="text" name="nombre_firma_cliente" class="sig-name" placeholder="Nombre del cliente" />
+        </div>
+        <div class="sig-box sig-rut">
+          <div class="sig-label">RUT cliente</div>
+          <input type="text" name="rut_cliente" class="rut-input" placeholder="12.345.678-9" required />
+          <p class="sig-hint">Al firmar, el cliente declara conformidad con el servicio realizado.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="form-footer no-print">
+      <button type="button" class="btn btn-ghost" id="btnClearDraft">Borrar borrador</button>
+      <button type="submit" class="btn btn-primary" id="btnSubmitEmail" title="soportesolsystem@gmail.com">Enviar a correo electrónico</button>
+    </div>
+  </form>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+  <script src="checklist-cctv.js"></script>
+</body>
+</html>
